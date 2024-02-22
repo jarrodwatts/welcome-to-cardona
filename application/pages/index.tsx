@@ -1,3 +1,4 @@
+import { ConnectWallet } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
@@ -16,30 +17,45 @@ const Home: NextPage = () => {
       />
 
       {/* Content */}
+      <div className="mx-auto flex flex-row pl-4 items-center justify-between">
+        <div className="flex flex-col">
+          <h1 className="text-[2.675rem] font-medium leading-none">
+            Polygon @ ETH Denver
+          </h1>
 
-      <div className="mx-auto flex flex-col pl-4">
-        <h1 className="text-[2.675rem] font-medium leading-none">
-          Polygon @ ETH Denver
-        </h1>
+          <p className="font-lg text-[#adabb2] mt-6">
+            Welcome to ETH Denver, anon.
+          </p>
 
-        <p className="font-lg text-[#adabb2] mt-6">
-          Welcome to ETH Denver, anon.
-        </p>
+          <p className="font-lg text-[#adabb2] mt-6">
+            On February 29th, at 12:00:00, we'll open a series of{" "}
+            <strong>4 challenges</strong>.
+          </p>
 
-        <p className="font-lg text-[#adabb2] mt-6">
-          On February 29th, at 12:00:00, we'll open up a series of{" "}
-          <strong>4 challenges</strong>.
-        </p>
+          <p className="font-lg text-[#adabb2] mt-6">
+            In teams that you create on-chain, you&rsquo;ll have 24 hours to
+            solve each challenge.
+          </p>
 
-        <p className="font-lg text-[#adabb2] mt-6">
-          In teams that you create on-chain, you&rsquo;ll have 24 hours to solve
-          each challenge.
-        </p>
+          <p className="font-lg text-[#adabb2] mt-6">
+            To play, you&rsquo;ll need to be either <strong>create</strong> or{" "}
+            <strong>join</strong> a team.
+          </p>
 
-        <p className="font-lg text-[#adabb2] mt-6">
-          To play, you&rsquo;ll need to be either <strong>create</strong> or{" "}
-          <strong>join</strong> a team.
-        </p>
+          <p className="font-lg text-[#adabb2] mt-6 mb-6">
+            Start by connecting your wallet below.
+          </p>
+
+          <ConnectWallet style={{ maxWidth: "596px" }} switchToActiveChain />
+        </div>
+
+        <div className="flex flex-col">
+          {/* Here's where users can either:
+              1/ View the team they've joined
+              2/ Create a new team
+              3/ Join an existing team
+          */}
+        </div>
       </div>
     </div>
   );
