@@ -1,5 +1,6 @@
 import {
   ConnectWallet,
+  ThirdwebNftMedia,
   Web3Button,
   useAddress,
   useContract,
@@ -14,6 +15,8 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { formatError } from "@/lib/errorFormatter";
+import Link from "next/link";
+import { CHAIN } from "../const/chains";
 
 const Home: NextPage = () => {
   // Form state - empty, join team, create team
@@ -237,6 +240,58 @@ const Home: NextPage = () => {
           )}
 
           {/* User has connected wallet + has joined a team */}
+          {address && !loadingTeam && userTeam && (
+            <div className="flex flex-col">
+              <h2 className="text-[1.5rem] font-medium leading-none">
+                Team {userTeam} 🏆
+              </h2>
+
+              <p className="font-lg text-[#adabb2] mt-4">
+                You are part of team <strong>{userTeam}</strong>. Good luck!
+              </p>
+
+              {nftMetadata && (
+                <div className="flex flex-col md:flex-row gap-4 items-start">
+                  <ThirdwebNftMedia
+                    metadata={nftMetadata.metadata}
+                    style={{
+                      maxWidth: 256,
+                      borderRadius: 64,
+                      padding: 8,
+                    }}
+                  />
+
+                  <div className="flex flex-col gap-2 mt-6">
+                    <h4 className="text-[1.15rem] font-medium leading-none">
+                      NFT Ticket Minted!
+                    </h4>
+
+                    <p className="font-medium text-sm text-[#adabb2]">
+                      Here&rsquo;s your NFT to grant access to the challenges.
+                      <strong> Come and show us at the booth!</strong>
+                    </p>
+
+                    <hr />
+
+                    <p className="font-medium text-sm text-[#adabb2]">
+                      <strong>Team Name:</strong> {userTeam}
+                    </p>
+
+                    <p className="font-medium text-sm text-[#adabb2]">
+                      <strong>Token ID:</strong> {nftMetadata.metadata.id}
+                    </p>
+
+                    <Link
+                      href={`${CHAIN.explorers[0].url}/nft/${nftContract}/${nftMetadata.metadata.id}`}
+                      className="font-medium text-sm text-[#adabb2] underline"
+                    >
+                      View on {CHAIN.explorers[0].name} ↗
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
