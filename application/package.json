@@ -11,13 +11,13 @@
     "export": "next export",
     "generate": "npx thirdweb@latest generate",
     "add-component": "npx --yes shadcn-ui@latest add",
-    "postinstall": "node postinstall.mjs"
+    "postinstall": "node postinstall.mjsnpx --yes thirdweb@latest generate"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@thirdweb-dev/auth": "^3.0.21",
-    "@thirdweb-dev/chains": "^0.1.15",
+    "@thirdweb-dev/chains": "^0.1.73",
     "@thirdweb-dev/react": "^3",
     "@thirdweb-dev/sdk": "^3",
     "@thirdweb-dev/wallets": "^0.2.22",
