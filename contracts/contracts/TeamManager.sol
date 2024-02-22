@@ -58,7 +58,7 @@ contract TeamManager {
      */
     function joinTeam(string memory _teamName) public {
         require(bytes(_teamName).length > 0, "Team name cannot be empty");
-        require(teams[_teamName].members.length > 0, "Team does not exist");
+        require(teams[_teamName].admin != address(0), "Team does not exist");
         require(
             bytes(memberOfTeam[msg.sender]).length == 0,
             "User is already part of a team."

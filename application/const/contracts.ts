@@ -17,8 +17,8 @@ const nft_prod = "0x92705a1A02c45CFD594B2b0551bc0B921b9a1d4A";
 // So that we get type-safety when interacting with it's functions.
 export const nftContract = IS_DEV_ENV ? nft_dev : (nft_prod as typeof nft_prod); // Here's the type assertion, since we assume the ABIs are the same in dev and prod.
 
-const teamManager_dev = "0x21821fE1E955B1aCa80Dbc4942221B886B08D444";
-const teamManager_prod = "0x21821fE1E955B1aCa80Dbc4942221B886B08D444";
+const teamManager_dev = "0x332e358716edC77FeA9E3CDFd006dA56a090075A";
+const teamManager_prod = "0x332e358716edC77FeA9E3CDFd006dA56a090075A";
 
 export const teamManagerContract = IS_DEV_ENV
   ? teamManager_dev

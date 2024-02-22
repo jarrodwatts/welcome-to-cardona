@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import { Nav } from "../components/Navbar";
 import Head from "next/head";
 import "../styles/globals.css";
+import { Toaster } from "@/components/ui/toaster";
+
 import type { AppProps } from "next/app";
 
 const myFont = localFont({
@@ -84,15 +86,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ThirdwebProvider
           // Set active chain for app
           activeChain={CHAIN}
-          // Auth (SIWE) configuration
-          authConfig={{
-            domain: process.env.NEXT_PUBLIC_AUTH_DOMAIN || "evmkit.com", // Your website domain
-            authUrl: "/api/auth", // API Route (default is - pages/api/auth/[...thirdweb].ts)
-          }}
           clientId={process.env.NEXT_PUBLIC_THIRDWEB_API_KEY}
         >
           <Nav />
           <Component {...pageProps} />
+          <Toaster />
         </ThirdwebProvider>
       </main>
     </div>
