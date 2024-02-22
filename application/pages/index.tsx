@@ -98,201 +98,205 @@ const Home: NextPage = () => {
           <ConnectWallet style={{ maxWidth: "596px" }} switchToActiveChain />
         </div>
 
-        <div className="flex flex-col sm:ml-16 w-full sm:w-1/2 min-h-[140px] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
-          {/* User hasn't conented wallet */}
-          {!address && <></>}
+        {address && (
+          <div className="flex flex-col sm:ml-16 w-full sm:w-1/2 min-h-[140px] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
+            {/* User hasn't conented wallet */}
+            {!address && <></>}
 
-          {/* User has connected wallet + team information is loading */}
-          {address && loadingTeam && (
-            <p className="font-lg text-[#adabb2] mt-6">Loading team info...</p>
-          )}
-
-          {/* User has connected wallet + has not joined a team yet. */}
-          {address && !loadingTeam && !userTeam && (
-            <div className="flex flex-col">
-              <h2 className="text-[1.5rem] font-medium leading-none">
-                Join A Team! 👨‍👩‍👧‍👦
-              </h2>
-
-              <p className="font-lg text-[#adabb2] mt-4">
-                You aren&rsquo;t in a team yet. Join a team to start playing.
+            {/* User has connected wallet + team information is loading */}
+            {address && loadingTeam && (
+              <p className="font-lg text-[#adabb2] mt-6">
+                Loading team info...
               </p>
+            )}
 
-              {/* Has not selected an option yet */}
-              {formState === "default" && (
-                <div className="flex flex-row gap-4 mt-4">
-                  <Button
-                    variant="default"
-                    onClick={() => setFormState("join")}
-                  >
-                    Join a Team
-                  </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() => setFormState("create")}
-                  >
-                    Create a team
-                  </Button>
-                </div>
-              )}
+            {/* User has connected wallet + has not joined a team yet. */}
+            {address && !loadingTeam && !userTeam && (
+              <div className="flex flex-col">
+                <h2 className="text-[1.5rem] font-medium leading-none">
+                  Join A Team! 👨‍👩‍👧‍👦
+                </h2>
 
-              {/* Join a team */}
-              {formState === "join" && (
-                <div className="flex flex-col gap-4 mt-4">
-                  <p className="font-lg text-[#adabb2]">
-                    Enter the team name to join:
-                  </p>
+                <p className="font-lg text-[#adabb2] mt-4">
+                  You aren&rsquo;t in a team yet. Join a team to start playing.
+                </p>
 
-                  <div className="flex flex-row gap-4">
-                    <Input
-                      value={teamName}
-                      onChange={(e) => setTeamName(e.target.value)}
-                      placeholder="Team Name"
+                {/* Has not selected an option yet */}
+                {formState === "default" && (
+                  <div className="flex flex-row gap-4 mt-4">
+                    <Button
+                      variant="default"
+                      onClick={() => setFormState("join")}
+                    >
+                      Join a Team
+                    </Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => setFormState("create")}
+                    >
+                      Create a team
+                    </Button>
+                  </div>
+                )}
+
+                {/* Join a team */}
+                {formState === "join" && (
+                  <div className="flex flex-col gap-4 mt-4">
+                    <p className="font-lg text-[#adabb2]">
+                      Enter the team name to join:
+                    </p>
+
+                    <div className="flex flex-row gap-4">
+                      <Input
+                        value={teamName}
+                        onChange={(e) => setTeamName(e.target.value)}
+                        placeholder="Team Name"
+                      />
+
+                      <Web3Button
+                        contractAddress={teamManagerContract}
+                        action={(contract) =>
+                          contract.call("joinTeam", [teamName])
+                        }
+                        onSuccess={() => {
+                          toast({
+                            title: "Joined team successfully!",
+                          });
+                          setTeamName("");
+                          setFormState("default");
+                        }}
+                        onError={(error) => {
+                          console.log("WTF:", error);
+                          toast({
+                            title: "Error joining team",
+                            description: formatError(error.message),
+                            variant: "destructive",
+                          });
+                        }}
+                        style={{ height: 30 }}
+                      >
+                        Join Team
+                      </Web3Button>
+                    </div>
+
+                    <Button
+                      className="rounded-xl h-4 w-2"
+                      variant={"ghost"}
+                      onClick={() => setFormState("default")}
+                    >
+                      &larr;
+                    </Button>
+                  </div>
+                )}
+
+                {/* Create a team */}
+                {formState === "create" && (
+                  <div className="flex flex-col gap-4 mt-4">
+                    <p className="font-lg text-[#adabb2]">
+                      Enter the team name to create:
+                    </p>
+
+                    <div className="flex flex-row gap-4">
+                      <Input
+                        value={teamName}
+                        onChange={(e) => setTeamName(e.target.value)}
+                        placeholder="Team Name"
+                      />
+
+                      <Web3Button
+                        contractAddress={teamManagerContract}
+                        action={(contract) =>
+                          contract.call("createTeam", [teamName])
+                        }
+                        onSuccess={() => {
+                          toast({
+                            title: "Created team successfully!",
+                            description:
+                              "You are now the leader of your team. Invite others to join!",
+                          });
+                          setTeamName("");
+                          setFormState("default");
+                        }}
+                        onError={(error) => {
+                          toast({
+                            title: "Error creating team",
+                            description: formatError(error.message),
+                            variant: "destructive",
+                          });
+                        }}
+                        style={{ height: 30 }}
+                      >
+                        Create Team
+                      </Web3Button>
+                    </div>
+
+                    <Button
+                      className="rounded-xl h-4 w-2"
+                      variant={"ghost"}
+                      onClick={() => setFormState("default")}
+                    >
+                      &larr;
+                    </Button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* User has connected wallet + has joined a team */}
+            {address && !loadingTeam && userTeam && (
+              <div className="flex flex-col">
+                <h2 className="text-[1.5rem] font-medium leading-none">
+                  Team {userTeam} 🏆
+                </h2>
+
+                <p className="font-lg text-[#adabb2] mt-4">
+                  You are part of team <strong>{userTeam}</strong>. Good luck!
+                </p>
+
+                {nftMetadata && (
+                  <div className="flex flex-col md:flex-row gap-4 items-start">
+                    <ThirdwebNftMedia
+                      metadata={nftMetadata.metadata}
+                      style={{
+                        maxWidth: 256,
+                        borderRadius: 64,
+                        padding: 8,
+                      }}
                     />
 
-                    <Web3Button
-                      contractAddress={teamManagerContract}
-                      action={(contract) =>
-                        contract.call("joinTeam", [teamName])
-                      }
-                      onSuccess={() => {
-                        toast({
-                          title: "Joined team successfully!",
-                        });
-                        setTeamName("");
-                        setFormState("default");
-                      }}
-                      onError={(error) => {
-                        console.log("WTF:", error);
-                        toast({
-                          title: "Error joining team",
-                          description: formatError(error.message),
-                          variant: "destructive",
-                        });
-                      }}
-                      style={{ height: 30 }}
-                    >
-                      Join Team
-                    </Web3Button>
+                    <div className="flex flex-col gap-2 mt-6">
+                      <h4 className="text-[1.15rem] font-medium leading-none">
+                        NFT Ticket Minted!
+                      </h4>
+
+                      <p className="font-medium text-sm text-[#adabb2]">
+                        Here&rsquo;s your NFT to grant access to the challenges.
+                        <strong> Come and show us at the booth!</strong>
+                      </p>
+
+                      <hr />
+
+                      <p className="font-medium text-sm text-[#adabb2]">
+                        <strong>Team Name:</strong> {userTeam}
+                      </p>
+
+                      <p className="font-medium text-sm text-[#adabb2]">
+                        <strong>Token ID:</strong> {nftMetadata.metadata.id}
+                      </p>
+
+                      <Link
+                        href={`${CHAIN.explorers[0].url}/nft/${nftContract}/${nftMetadata.metadata.id}`}
+                        className="font-medium text-sm text-[#adabb2] underline"
+                      >
+                        View on {CHAIN.explorers[0].name} ↗
+                      </Link>
+                    </div>
                   </div>
-
-                  <Button
-                    className="rounded-xl h-4 w-2"
-                    variant={"ghost"}
-                    onClick={() => setFormState("default")}
-                  >
-                    &larr;
-                  </Button>
-                </div>
-              )}
-
-              {/* Create a team */}
-              {formState === "create" && (
-                <div className="flex flex-col gap-4 mt-4">
-                  <p className="font-lg text-[#adabb2]">
-                    Enter the team name to create:
-                  </p>
-
-                  <div className="flex flex-row gap-4">
-                    <Input
-                      value={teamName}
-                      onChange={(e) => setTeamName(e.target.value)}
-                      placeholder="Team Name"
-                    />
-
-                    <Web3Button
-                      contractAddress={teamManagerContract}
-                      action={(contract) =>
-                        contract.call("createTeam", [teamName])
-                      }
-                      onSuccess={() => {
-                        toast({
-                          title: "Created team successfully!",
-                          description:
-                            "You are now the leader of your team. Invite others to join!",
-                        });
-                        setTeamName("");
-                        setFormState("default");
-                      }}
-                      onError={(error) => {
-                        toast({
-                          title: "Error creating team",
-                          description: formatError(error.message),
-                          variant: "destructive",
-                        });
-                      }}
-                      style={{ height: 30 }}
-                    >
-                      Create Team
-                    </Web3Button>
-                  </div>
-
-                  <Button
-                    className="rounded-xl h-4 w-2"
-                    variant={"ghost"}
-                    onClick={() => setFormState("default")}
-                  >
-                    &larr;
-                  </Button>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* User has connected wallet + has joined a team */}
-          {address && !loadingTeam && userTeam && (
-            <div className="flex flex-col">
-              <h2 className="text-[1.5rem] font-medium leading-none">
-                Team {userTeam} 🏆
-              </h2>
-
-              <p className="font-lg text-[#adabb2] mt-4">
-                You are part of team <strong>{userTeam}</strong>. Good luck!
-              </p>
-
-              {nftMetadata && (
-                <div className="flex flex-col md:flex-row gap-4 items-start">
-                  <ThirdwebNftMedia
-                    metadata={nftMetadata.metadata}
-                    style={{
-                      maxWidth: 256,
-                      borderRadius: 64,
-                      padding: 8,
-                    }}
-                  />
-
-                  <div className="flex flex-col gap-2 mt-6">
-                    <h4 className="text-[1.15rem] font-medium leading-none">
-                      NFT Ticket Minted!
-                    </h4>
-
-                    <p className="font-medium text-sm text-[#adabb2]">
-                      Here&rsquo;s your NFT to grant access to the challenges.
-                      <strong> Come and show us at the booth!</strong>
-                    </p>
-
-                    <hr />
-
-                    <p className="font-medium text-sm text-[#adabb2]">
-                      <strong>Team Name:</strong> {userTeam}
-                    </p>
-
-                    <p className="font-medium text-sm text-[#adabb2]">
-                      <strong>Token ID:</strong> {nftMetadata.metadata.id}
-                    </p>
-
-                    <Link
-                      href={`${CHAIN.explorers[0].url}/nft/${nftContract}/${nftMetadata.metadata.id}`}
-                      className="font-medium text-sm text-[#adabb2] underline"
-                    >
-                      View on {CHAIN.explorers[0].name} ↗
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
