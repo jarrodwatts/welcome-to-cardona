@@ -10,8 +10,7 @@
     "lint": "next lint",
     "export": "next export",
     "generate": "npx thirdweb@latest generate",
-    "add-component": "npx --yes shadcn-ui@latest add",
-    "postinstall": "node postinstall.mjsnpx --yes thirdweb@latest generate"
+    "add-component": "npx --yes shadcn-ui@latest add"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "1.0.3",

@@ -32,11 +32,11 @@ async function runThirdwebGenerate() {
   } finally {
     try {
       // Restore the original postinstall script in the package.json
-      packageJsonOriginalContents.scripts.postinstall = "node postinstall.mjs";
-      writeFileSync(
-        packageJsonPath,
-        JSON.stringify(packageJsonOriginalContents, null, 2)
-      );
+      // packageJsonOriginalContents.scripts.postinstall = "node postinstall.mjs";
+      // writeFileSync(
+      //   packageJsonPath,
+      //   JSON.stringify(packageJsonOriginalContents, null, 2)
+      // );
       console.log("Overwrote package.json postinstall script successfully.");
     } catch (error) {
       console.error(
