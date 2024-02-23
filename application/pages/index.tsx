@@ -31,6 +31,8 @@ const Home: NextPage = () => {
 
   // Team name state
   const [teamName, setTeamName] = useState<string>("");
+  
+  const [toggleVideo, setToggleVideo] = useState<boolean>(false);
 
   // Read wallet information
   const address = useAddress();
@@ -134,7 +136,20 @@ const Home: NextPage = () => {
           <Countdown className="text-6xl mt-4" date={new Date('February 24, 2024 23:59:59')}>
             <ConnectWallet style={{ maxWidth: "596px" }} switchToActiveChain />
           </Countdown>
-          <h2 className="text-[1.675rem] leading-none mt-10">Check back with us to create your team</h2>
+          <Button
+            variant="default"
+            onClick={() => setToggleVideo(!toggleVideo)}
+            className="mt-10"
+          >
+            {toggleVideo ? "I don't want to watch the video" : "Show me a cool video while I wait"}
+          </Button>
+          {toggleVideo && (
+            <div className="mt-6">
+              <video className="mt-6" controls>
+                <source src="agglayer.mp4" type="video/mp4" />
+              </video>
+            </div>
+          )}
         </div>
 
         

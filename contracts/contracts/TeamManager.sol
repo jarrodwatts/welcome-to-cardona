@@ -1,12 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./CardonaNFTs.sol";
-
 contract TeamManager {
-    // Store the address of the NFT contract
-    CordonaNFTs private nftContract;
-
     // Define a structure for a Team
     struct Team {
         string name;
@@ -22,10 +17,6 @@ contract TeamManager {
 
     // Mapping to keep track of which team an address has joined
     mapping(address => string) private memberOfTeam;
-
-    constructor(address _nftContract) {
-        nftContract = CordonaNFTs(_nftContract);
-    }
 
     /**
      * @dev Create a new team. The creator becomes the team admin.
@@ -67,9 +58,6 @@ contract TeamManager {
         // Add the sender to the team's members
         teams[_teamName].members.push(msg.sender);
         memberOfTeam[msg.sender] = _teamName; // Update mapping to reflect the team the user has joined
-
-        // Mint an NFT to the user for joining the team
-        nftContract.mintTo(msg.sender, 0, "", 1);
     }
 
     function leaveTeam() public {
