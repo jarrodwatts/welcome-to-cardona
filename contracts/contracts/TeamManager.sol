@@ -84,9 +84,6 @@ contract TeamManager {
 
         // Update the mapping to reflect that the user has left the team
         memberOfTeam[msg.sender] = "";
-
-        // Burn the NFT that was minted when the user joined the team
-        nftContract.burn(msg.sender, 0, 1);
     }
 
     /**
