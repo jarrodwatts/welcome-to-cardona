@@ -9,12 +9,10 @@ import { PolygonZkevmCardonaTestnet, Mumbai } from "@thirdweb-dev/chains";
 
 export const IS_DEV_ENV = process.env.NODE_ENV === "development";
 
-const cardona = PolygonZkevmCardonaTestnet;
-
-// {
-//   ...PolygonZkevmCardonaTestnet,
-//   rpc: ["https://rpc.cardona.zkevm-rpc.com"],
-// };
+const cardona = {
+  ...PolygonZkevmCardonaTestnet,
+  rpc: ["https://rpc.cardona.zkevm-rpc.com"],
+};
 
 const DEVELOPMENT_CHAIN = cardona; // e.g. Mumbai used for local development
 const PRODUCTION_CHAIN = cardona; // You can use a different chain for production (e.g. Polygon)
