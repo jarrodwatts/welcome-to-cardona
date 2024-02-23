@@ -56,6 +56,13 @@ const Home: NextPage = () => {
     }
   };
 
+  // Read user's team (if any)
+  const { data: userTeam, isLoading: loadingTeam } = useContractRead(
+    teamManager,
+    "getUserTeam",
+    [address]
+  );
+
   return (
     <div className="container mx-auto max-w-[1440px] bg-white/5 rounded-3xl p-18 relative overflow-hidden mt-24 mx-[2.5rem] min-h-[620px] p-6 sm:p-12 md:p-20">
       {/* Gradient 1 */}
