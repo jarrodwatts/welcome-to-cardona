@@ -160,8 +160,8 @@ const Home: NextPage = () => {
           </Button>
           {toggleVideo && (
             <div className="mt-6">
-              <video className="mt-6" controls>
-                <source src="/agglayer.mp4" />
+              <video width="1280" height="720" controls preload="none">
+                <source src="/agglayer-compressed.mp4" type="video/mp4" />
               </video>
             </div>
           )}
