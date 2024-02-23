@@ -27,6 +27,7 @@
     "lucide-react": "^0.263.1",
     "next": "^13",
     "react": "^18.2",
+    "react-countdown": "^2.3.5",
     "react-dom": "^18.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.6"

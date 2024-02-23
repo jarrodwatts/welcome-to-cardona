@@ -16,7 +16,9 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { formatError } from "@/lib/errorFormatter";
 import Link from "next/link";
+import Image from "next/image";
 import { CHAIN } from "../const/chains";
+import Countdown from "react-countdown";
 
 const Home: NextPage = () => {
   // Form state - empty, join team, create team
@@ -43,17 +45,19 @@ const Home: NextPage = () => {
     0
   );
 
-  // Read user's team (if any)
-  const { data: userTeam, isLoading: loadingTeam } = useContractRead(
-    teamManager,
-    "getUserTeam",
-    [address]
-  );
-
-  console.log(userTeam, "userTeam");
+  // Countdown to Team Selection
+  const renderer = ({ hours, minutes, seconds, completed }: { hours: number, minutes: number, seconds: number, completed: boolean }) => {
+    if (completed) {
+      // Render a completed state
+      return <ConnectWallet style={{ maxWidth: "596px" }} switchToActiveChain />;
+    } else {
+      // Render a countdown
+      return <span>{hours}:{minutes}:{seconds}</span>;
+    }
+  };
 
   return (
-    <div className="max-w-[1440px] bg-white/5 rounded-3xl p-18 relative overflow-hidden mt-24 mx-[2.5rem] min-h-[620px] p-6 sm:p-12 md:p-20">
+    <div className="container mx-auto max-w-[1440px] bg-white/5 rounded-3xl p-18 relative overflow-hidden mt-24 mx-[2.5rem] min-h-[620px] p-6 sm:p-12 md:p-20">
       {/* Gradient 1 */}
       <img
         src="/gradient1.webp"
@@ -67,36 +71,66 @@ const Home: NextPage = () => {
       />
 
       {/* Content */}
-      <div className="mx-auto flex flex-col sm:flex-row pl-4 items-center justify-between gap-8 w-full min-w-[50%]">
-        <div className="flex flex-col">
-          <h1 className="text-[2.675rem] font-medium leading-none">
+      <div className="mx-auto flex flex-col sm:flex-row pl-4 w-full min-w-[50%]">
+        <div className="flex flex-col items-center">
+          <h1 className="text-[3rem] font-medium text-center leading-none">
             Polygon @ ETH Denver
           </h1>
 
-          <p className="font-lg text-[#adabb2] mt-6">
-            Welcome to ETH Denver, anon.
+          <p className="text-4xl text-[#adabb2] text-center mt-6">
+            Welcome to Cardona, the new Polygon zkEVM Testnet!
           </p>
 
-          <p className="font-lg text-[#adabb2] mt-6">
-            On February 29th, at 12:00:00, we'll open a series of{" "}
-            <strong>4 challenges</strong>.
+          <p className="text-2xl text-[#adabb2] text-center mt-6">
+            This open challenge is gonna be different from your usual L2 bounty. The same prizes but with a twist. We're gonna have a little fun.
+          </p>
+          <p className="text-2xl text-[#adabb2] mt-6">
+            Also, here's how you can get 15 minutes with either Jordi or Sandeep. Hack a smart contract.
           </p>
 
-          <p className="font-lg text-[#adabb2] mt-6">
-            In teams, you will have 24 hours to solve each challenge.
-          </p>
+          <h2 className="text-[2.675rem] leading-none mt-10">Stages</h2>
 
-          <p className="font-lg text-[#adabb2] mt-6">
-            To play, you&rsquo;ll need to either <strong>create</strong> or{" "}
-            <strong>join</strong> a team.
-          </p>
-
-          <p className="font-lg text-[#adabb2] mt-6 mb-6">
-            Start by connecting your wallet below.
-          </p>
-
-          <ConnectWallet style={{ maxWidth: "596px" }} switchToActiveChain />
+          <div className="flex flex-row mt-6">
+            <div className="max-w-sm mr-4 rounded overflow-hidden shadow-lg">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">Create or Join a Team</div>
+                  <p className="text-gray-300 text-xl">
+                    From the 25th of February, you'll be able to create or join a team. You can do it solo or with a team of up to 4 people. You can partner with anyone you like, doesn't have to be the folks that you're working with on your main project.
+                  </p>
+                  <p className="text-gray-300 mt-4 text-xl">
+                    We'll also give you a primer on the transaction lifecycle of a zkEVM transaction.
+                  </p>
+                </div>
+            </div>
+            <div className="max-w-sm mr-4 rounded overflow-hidden shadow-lg">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">Bridge</div>
+                  <p className="text-gray-300 text-xl">
+                    If you're a part of a team, then you'll be able mint our special Cardona dummy token which you'll have to bridge to Sepolia to complete this stage. You'll have loads of time to do this so don't worry.
+                  </p>
+                  <p className="text-gray-300 mt-4 text-xl">
+                    We'll also give you a primer on how our bridge works and how it fits into the Aggregration layer that we are building.
+                  </p>
+                </div>
+            </div>
+            <div className="max-w-sm mr-4 rounded overflow-hidden shadow-lg">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">Hack a Smart Contract</div>
+                  <p className="text-gray-300 text-xl">
+                    On February 29th, at 12:00:00 AM, every team will get to pick one of four smart contracts to hack. You'll need to bring your A-game. Winners will get $2500 USDC per smart contract and the chance to get 15 mins with either Jordi or Sandeep.
+                  </p>
+                  <p className="text-gray-300 mt-4 text-xl"> Pro-tip: They won't be easy. </p>
+                </div>
+            </div>
+          </div>
+          <h2 className="text-[2.675rem] leading-none mt-10">Time to Team Selection</h2>
+          <Countdown className="text-6xl mt-4" date={new Date('February 24, 2024 23:59:59')}>
+            <ConnectWallet style={{ maxWidth: "596px" }} switchToActiveChain />
+          </Countdown>
+          <h2 className="text-[1.675rem] leading-none mt-10">Check back with us to create your team</h2>
         </div>
+
+        
 
         {address && (
           <div className="flex flex-col sm:ml-16 w-full sm:w-1/2 min-h-[140px] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">

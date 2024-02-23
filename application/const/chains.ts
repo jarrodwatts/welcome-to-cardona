@@ -9,7 +9,7 @@ import { PolygonZkevmCardonaTestnet, Mumbai } from "@thirdweb-dev/chains";
 
 export const IS_DEV_ENV = process.env.NODE_ENV === "development";
 
-const cardona = Mumbai;
+const cardona = PolygonZkevmCardonaTestnet;
 
 // {
 //   ...PolygonZkevmCardonaTestnet,
