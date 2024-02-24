@@ -5,7 +5,7 @@
  * The CHAIN export changes depending on what environment you are in.
  */
 
-import { PolygonZkevmCardonaTestnet, Mumbai } from "@thirdweb-dev/chains";
+import { PolygonZkevmCardonaTestnet } from "@thirdweb-dev/chains";
 
 export const IS_DEV_ENV = process.env.NODE_ENV === "development";
 

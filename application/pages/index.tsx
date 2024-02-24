@@ -1,53 +1,18 @@
-import {
-  ConnectWallet,
-  ThirdwebNftMedia,
-  Web3Button,
-  useAddress,
-  useContract,
-  useContractRead,
-} from "@thirdweb-dev/react";
-import { teamManagerContract } from "../const/contracts";
 import { Button } from "@/components/ui/button";
 import type { NextPage } from "next";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
-import { formatError } from "@/lib/errorFormatter";
 import Link from "next/link";
-import { CHAIN } from "../const/chains";
 import dynamic from "next/dynamic";
 import { Separator } from "@/components/ui/separator";
+import { useRouter } from "next/router";
 
 const NoSSRCounter = dynamic(() => import("../components/CountdownTimer"), {
   ssr: false,
 });
 
 const Home: NextPage = () => {
-  // Form state - empty, join team, create team
-  const [formState, setFormState] = useState<"default" | "join" | "create">(
-    "default"
-  );
-
-  // Toaster hook
-  const { toast } = useToast();
-
-  // Team name state
-  const [teamName, setTeamName] = useState<string>("");
-
+  const router = useRouter();
   const [toggleVideo, setToggleVideo] = useState<boolean>(false);
-
-  // Read wallet information
-  const address = useAddress();
-
-  // Connect to smart contracts
-  const { contract: teamManager } = useContract(teamManagerContract, "custom");
-
-  // Read user's team (if any)
-  const { data: userTeam, isLoading: loadingTeam } = useContractRead(
-    teamManager,
-    "getUserTeam",
-    [address]
-  );
 
   return (
     <div className="container mx-auto max-w-[1440px] bg-white/5 rounded-3xl p-18 relative overflow-hidden mt-24 min-h-[620px] p-6 sm:p-12 md:p-20">
@@ -86,9 +51,7 @@ const Home: NextPage = () => {
 
           <Separator className="my-6" />
 
-          <h2 className="text-[2.675rem] leading-none">
-            Time to Team Selection
-          </h2>
+          <h2 className="text-[2.675rem] leading-none">Team Selection</h2>
           <NoSSRCounter />
 
           <Separator className="my-6" />
@@ -157,10 +120,11 @@ const Home: NextPage = () => {
               Show me a cool video while I wait
             </Button>
 
-            <Button variant="secondary">
-              <Link href="/transaction-lifecycle">
-                Learn about Polygon zkEVM
-              </Link>
+            <Button
+              variant="secondary"
+              onClick={() => router.push(`/transaction-lifecycle`)}
+            >
+              Learn about Polygon zkEVM
             </Button>
           </div>
 
