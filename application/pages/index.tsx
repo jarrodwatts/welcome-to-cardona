@@ -152,11 +152,9 @@ const Home: NextPage = () => {
           <Button
             variant="default"
             onClick={() => setToggleVideo(!toggleVideo)}
-            className="mt-10"
+            className={`mt-10 ${toggleVideo ? "invisible" : ""}`}
           >
-            {toggleVideo
-              ? "I don't want to watch the video"
-              : "Show me a cool video while I wait"}
+            Show me a cool video while I wait
           </Button>
           {toggleVideo && (
             <div className="mt-6">
@@ -166,6 +164,7 @@ const Home: NextPage = () => {
                 controls
                 preload="metadata"
                 autoPlay
+                muted
               >
                 <source src="/agglayer-compressed.mp4" type="video/mp4" />
               </video>
