@@ -149,13 +149,21 @@ const Home: NextPage = () => {
             </div>
           </div>
 
-          <Button
-            variant="default"
-            onClick={() => setToggleVideo(!toggleVideo)}
-            className={`mt-10 ${toggleVideo ? "invisible" : ""}`}
-          >
-            Show me a cool video while I wait
-          </Button>
+          <div className="flex flex-row gap-4 mt-10">
+            <Button
+              variant="default"
+              onClick={() => setToggleVideo(!toggleVideo)}
+            >
+              Show me a cool video while I wait
+            </Button>
+
+            <Button variant="secondary">
+              <Link href="/transaction-lifecycle">
+                Learn about Polygon zkEVM
+              </Link>
+            </Button>
+          </div>
+
           {toggleVideo && (
             <div className="mt-6">
               <video
