@@ -43,7 +43,7 @@ export default function CountdownTimer() {
   return (
     <Countdown
       className="text-6xl mt-4"
-      date={new Date("February 23, 2024 23:59:59")}
+      date={new Date("February 24, 2024 23:59:59")}
     >
       <>
         <div className="flex flex-col mt-4 w-full sm:w-1/2 backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
