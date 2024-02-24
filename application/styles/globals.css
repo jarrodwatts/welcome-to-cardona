@@ -81,3 +81,29 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-out {
+  animation: slideOut 0.5s forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s forwards;
+}

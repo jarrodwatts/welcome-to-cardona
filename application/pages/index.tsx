@@ -75,13 +75,13 @@ const Home: NextPage = () => {
           </p>
 
           <p className="text-xl text-[#adabb2] text-center mt-6">
-            This year, we&rsquo;re doing this a little differently from your
+            This year, we&rsquo;re doing things a little differently from your
             usual L2 bounty. The same prizes but with a twist. We're gonna have
             a little fun.
           </p>
           <p className="text-xl text-[#adabb2] text-center mt-6">
-            Hack some smart contracts to win prizes and <i>also</i> get 15
-            minutes with either Jordi or Sandeep
+            Hack some smart contracts to win prizes. <i>Plus</i>, get 15 minutes
+            with either Jordi or Sandeep
           </p>
 
           <Separator className="my-6" />
