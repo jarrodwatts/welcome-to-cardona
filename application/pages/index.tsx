@@ -58,7 +58,7 @@ const Home: NextPage = () => {
 
           <h2 className="text-[2.675rem] leading-none mt-4">Stages</h2>
 
-          <div className="flex flex-row mt-6">
+          <div className="flex flex-col md:flex-row mt-6">
             <div className="max-w-sm mr-4 rounded overflow-hidden shadow-lg">
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">

@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { formatError } from "@/lib/errorFormatter";
 import Link from "next/link";
+import router from "next/router";
 
 export default function CountdownTimer() {
   // Form state - empty, join team, create team
@@ -210,6 +211,16 @@ export default function CountdownTimer() {
               <p className="font-lg text-[#adabb2] mt-4">
                 You are part of team <strong>{userTeam}</strong>. Good luck!
               </p>
+              <p className="font-lg text-[#adabb2] mt-4">
+                Transaction lifecycles on the zkEVM are different from Mainnet, learn more about it by clicking the button below.
+              </p>
+              <Button
+              variant="default"
+              className="mt-4"
+              onClick={() => router.push(`/transaction-lifecycle`)}
+              >
+                Learn about Trx Lifecycles on Polygon zkEVM
+              </Button>
             </div>
           )}
         </div>
