@@ -1,30 +1,22 @@
 import { Button } from "@/components/ui/button";
 import type { NextPage } from "next";
 import { useState } from "react";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/router";
 import { useSDK } from "@thirdweb-dev/react";
 import { cardonaPointsContract } from "../const/contracts";
+import MintTokens from "@/components/MintTokens";
 
 const NoSSRCounter = dynamic(() => import("../components/CountdownTimer"), {
   ssr: false,
 });
 
-const Home: NextPage = () => {
+const Bridge: NextPage = () => {
   const router = useRouter();
   const sdk = useSDK();
-  const [toggleVideo, setToggleVideo] = useState<boolean>(false);
-
-  async function verifyContract() {
-    const contract = await sdk?.getContract(cardonaPointsContract);
-
-    sdk?.verifier.verifyContract(
-      cardonaPointsContract,
-      "https://api-cardona-zkevm.polygonscan.com/api",
-      "KVH8G4B4MXXR6EETPFI4VFA38NK85JBKWI"
-    );
-  }
+  const [minted, setMined] = useState<boolean>(false);
 
   return (
     <div className="container mx-auto max-w-[1440px] bg-white/5 rounded-3xl p-18 relative overflow-hidden mt-24 min-h-[620px] p-6 sm:p-12 md:p-20">
@@ -40,33 +32,29 @@ const Home: NextPage = () => {
         className="absolute top-0 left-[13%] w-full h-full -z-10"
       />
 
-      <button onClick={verifyContract}>Verify Contract</button>
-
       {/* Content */}
       <div className="mx-auto flex flex-col sm:flex-row pl-4 w-full min-w-[50%]">
         <div className="flex flex-col items-center">
           <h1 className="text-[3rem] font-medium text-center leading-none">
-            Polygon @ ETH Denver
+            Welcome to Stage 2
           </h1>
 
           <p className="text-3xl text-center mt-6">
-            Welcome to Cardona, the new Polygon zkEVM Testnet!
-          </p>
-
-          <p className="text-xl text-[#adabb2] text-center mt-6">
-            This year, we&rsquo;re doing things a little differently from your
-            usual L2 bounty. The same prizes but with a twist. We're gonna have
-            a little fun.
-          </p>
-          <p className="text-xl text-[#adabb2] text-center mt-6">
-            Hack some smart contracts to win prizes. <i>Plus</i>, get 15 minutes
-            with either Jordi or Sandeep
+            At this stage, you'll start by minting our special test token,
+            $CRDNA
           </p>
 
           <Separator className="my-6" />
 
-          <h2 className="text-[2.675rem] leading-none">Team Selection</h2>
-          <NoSSRCounter />
+          {minted ? (
+            <div className="flex flex-col mt-4 w-full sm:w-1/2 backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
+              <>Bridge</>
+            </div>
+          ) : (
+            <div className="flex flex-col mt-4 w-full sm:w-1/2 backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
+              <MintTokens />
+            </div>
+          )}
 
           <Separator className="my-6" />
 
@@ -125,41 +113,10 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
-
-          <div className="flex flex-row gap-4 mt-10">
-            <Button
-              variant="default"
-              onClick={() => setToggleVideo(!toggleVideo)}
-            >
-              Show me a cool video while I wait
-            </Button>
-
-            <Button
-              variant="secondary"
-              onClick={() => router.push(`/transaction-lifecycle`)}
-            >
-              Learn about Polygon zkEVM
-            </Button>
-          </div>
-
-          {toggleVideo && (
-            <div className="mt-6">
-              <video
-                width="1280"
-                height="720"
-                controls
-                preload="metadata"
-                autoPlay
-                muted
-              >
-                <source src="/agglayer-compressed.mp4" type="video/mp4" />
-              </video>
-            </div>
-          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Bridge;

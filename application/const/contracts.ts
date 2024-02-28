@@ -13,3 +13,10 @@ const teamManager_prod = "0x92705a1A02c45CFD594B2b0551bc0B921b9a1d4A";
 export const teamManagerContract = IS_DEV_ENV
   ? teamManager_dev
   : (teamManager_prod as typeof teamManager_dev);
+
+const cardonaPoints_dev = "0x94ab230b92A3f2899e81d46d4E874c6F006c88Aa";
+const cardonaPoints_prod = "0x94ab230b92A3f2899e81d46d4E874c6F006c88Aa";
+
+export const cardonaPointsContract = IS_DEV_ENV
+  ? cardonaPoints_dev
+  : (cardonaPoints_prod as typeof cardonaPoints_dev);

@@ -212,14 +212,24 @@ export default function CountdownTimer() {
                 You are part of team <strong>{userTeam}</strong>. Good luck!
               </p>
               <p className="font-lg text-[#adabb2] mt-4">
-                Transaction lifecycles on the zkEVM are different from Mainnet, learn more about it by clicking the button below.
+                Transaction lifecycles on the zkEVM are different from Mainnet,
+                learn more about it by clicking the button below.
               </p>
+
               <Button
-              variant="default"
-              className="mt-4"
-              onClick={() => router.push(`/transaction-lifecycle`)}
+                variant="default"
+                className="mt-4"
+                onClick={() => router.push(`/bridge`)}
               >
-                Learn about Trx Lifecycles on Polygon zkEVM
+                Go to Stage 2
+              </Button>
+
+              <Button
+                variant="outline"
+                className="mt-2"
+                onClick={() => router.push(`/transaction-lifecycle`)}
+              >
+                Learn about Tx Lifecycles on Polygon zkEVM
               </Button>
             </div>
           )}
