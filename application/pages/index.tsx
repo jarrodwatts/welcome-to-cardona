@@ -16,16 +16,6 @@ const Home: NextPage = () => {
   const sdk = useSDK();
   const [toggleVideo, setToggleVideo] = useState<boolean>(false);
 
-  async function verifyContract() {
-    const contract = await sdk?.getContract(cardonaPointsContract);
-
-    sdk?.verifier.verifyContract(
-      cardonaPointsContract,
-      "https://api-cardona-zkevm.polygonscan.com/api",
-      "KVH8G4B4MXXR6EETPFI4VFA38NK85JBKWI"
-    );
-  }
-
   return (
     <div className="container mx-auto max-w-[1440px] bg-white/5 rounded-3xl p-18 relative overflow-hidden mt-24 min-h-[620px] p-6 sm:p-12 md:p-20">
       {/* Gradient 1 */}
@@ -39,8 +29,6 @@ const Home: NextPage = () => {
         src="/gradient2.webp"
         className="absolute top-0 left-[13%] w-full h-full -z-10"
       />
-
-      <button onClick={verifyContract}>Verify Contract</button>
 
       {/* Content */}
       <div className="mx-auto flex flex-col sm:flex-row pl-4 w-full min-w-[50%]">
