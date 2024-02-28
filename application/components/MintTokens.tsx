@@ -99,7 +99,7 @@ export default function MintTokens({}: Props) {
         action={(contract) => contract.erc20.mint(69)}
         onSuccess={() =>
           toast({
-            title: "Minted 69 $CRDNA tokens successfully!",
+            title: "Minted 69 $DNVR tokens successfully!",
             description: `Tokens have been minted to your wallet. You are ready to bridge them back to L1!`,
           })
         }

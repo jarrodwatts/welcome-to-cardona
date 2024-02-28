@@ -221,7 +221,15 @@ export default function CountdownTimer() {
                 className="mt-4"
                 onClick={() => router.push(`/bridge`)}
               >
-                Go to Stage 2
+                Go to Bridge
+              </Button>
+
+              <Button
+                variant="default"
+                className="mt-2"
+                onClick={() => router.push(`/challenges`)}
+              >
+                Go to Challenges
               </Button>
 
               <Button

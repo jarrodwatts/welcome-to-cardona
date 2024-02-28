@@ -1,22 +1,20 @@
 import { Button } from "@/components/ui/button";
 import type { NextPage } from "next";
 import { useState } from "react";
-import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/router";
 import { useSDK } from "@thirdweb-dev/react";
 import { cardonaPointsContract } from "../const/contracts";
-import MintTokens from "@/components/MintTokens";
 
 const NoSSRCounter = dynamic(() => import("../components/CountdownTimer"), {
   ssr: false,
 });
 
-const Bridge: NextPage = () => {
+const Home: NextPage = () => {
   const router = useRouter();
   const sdk = useSDK();
-  const [minted, setMined] = useState<boolean>(false);
+  const [toggleVideo, setToggleVideo] = useState<boolean>(false);
 
   return (
     <div className="container mx-auto max-w-[1440px] bg-white/5 rounded-3xl p-18 relative overflow-hidden mt-24 min-h-[620px] p-6 sm:p-12 md:p-20">
@@ -36,24 +34,56 @@ const Bridge: NextPage = () => {
       <div className="mx-auto flex flex-col sm:flex-row pl-4 w-full min-w-[50%]">
         <div className="flex flex-col items-center">
           <h1 className="text-[3rem] font-medium text-center leading-none">
-            Welcome to Stage 2
+            Polygon @ ETH Denver
           </h1>
 
           <p className="text-2xl text-center mt-6">
-            At this stage, you'll start by minting our special test token, $DNVR
+            Hack smart contracts to win prizes. Good luck!
           </p>
 
           <Separator className="my-6" />
 
-          {minted ? (
-            <div className="flex flex-col mt-4 w-full sm:w-1/2 backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
-              <>Bridge</>
+          <h2 className="text-[2.675rem] leading-none">Challenges</h2>
+
+          <div className="flex flex-col md:flex-row flex-wrap mt-6 w-full sm:w-3/4 gap-2 items-center justify-center">
+            <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
+              <h3 className="text-xl font-medium">Yield Optimizer Vault</h3>
+              <p className="text-[#adabb2] mt-2">
+                Recover funds from a yield optimization protocol.
+              </p>
+              <Button variant="default" className="mt-4">
+                Start Hacking
+              </Button>
             </div>
-          ) : (
-            <div className="flex flex-col mt-4 w-full sm:w-1/2 backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
-              <MintTokens />
+
+            <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
+              <h3 className="text-xl font-medium">ERC4626 Vault</h3>
+              <p className="text-[#adabb2] mt-2">
+                Claim funds from a compromised ERC4626 vault.
+              </p>
+              <Button variant="default" className="mt-4">
+                Start Hacking
+              </Button>
             </div>
-          )}
+
+            <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
+              <h3 className="text-xl font-medium">Lending Pool #1</h3>
+              <p className="text-[#adabb2] mt-2">
+                Empty a compromised lending pool.
+              </p>
+              <Button variant="default" className="mt-4">
+                Start Hacking
+              </Button>
+            </div>
+
+            <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
+              <h3 className="text-xl font-medium">Lending Pool #2</h3>
+              <p className="text-[#adabb2] mt-2">Avoid getting liquidated.</p>
+              <Button variant="default" className="mt-4">
+                Start Hacking
+              </Button>
+            </div>
+          </div>
 
           <Separator className="my-6" />
 
@@ -112,10 +142,41 @@ const Bridge: NextPage = () => {
               </div>
             </div>
           </div>
+
+          <div className="flex flex-row gap-4 mt-10">
+            <Button
+              variant="default"
+              onClick={() => setToggleVideo(!toggleVideo)}
+            >
+              Show me a cool video while I wait
+            </Button>
+
+            <Button
+              variant="secondary"
+              onClick={() => router.push(`/transaction-lifecycle`)}
+            >
+              Learn about Polygon zkEVM
+            </Button>
+          </div>
+
+          {toggleVideo && (
+            <div className="mt-6">
+              <video
+                width="1280"
+                height="720"
+                controls
+                preload="metadata"
+                autoPlay
+                muted
+              >
+                <source src="/agglayer-compressed.mp4" type="video/mp4" />
+              </video>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default Bridge;
+export default Home;
