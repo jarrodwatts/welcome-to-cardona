@@ -51,8 +51,8 @@ const Home: NextPage = () => {
               <p className="text-[#adabb2] mt-2">
                 Recover funds from a yield optimization protocol.
               </p>
-              <Button variant="default" className="mt-4">
-                Start Hacking
+              <Button variant="default" className="mt-4" disabled>
+                Coming soon...
               </Button>
             </div>
 
@@ -61,8 +61,8 @@ const Home: NextPage = () => {
               <p className="text-[#adabb2] mt-2">
                 Claim funds from a compromised ERC4626 vault.
               </p>
-              <Button variant="default" className="mt-4">
-                Start Hacking
+              <Button variant="default" className="mt-4" disabled>
+                Coming soon...
               </Button>
             </div>
 
@@ -71,16 +71,16 @@ const Home: NextPage = () => {
               <p className="text-[#adabb2] mt-2">
                 Empty a compromised lending pool.
               </p>
-              <Button variant="default" className="mt-4">
-                Start Hacking
+              <Button variant="default" className="mt-4" disabled>
+                Coming soon...
               </Button>
             </div>
 
             <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
               <h3 className="text-xl font-medium">Lending Pool #2</h3>
               <p className="text-[#adabb2] mt-2">Avoid getting liquidated.</p>
-              <Button variant="default" className="mt-4">
-                Start Hacking
+              <Button variant="default" className="mt-4" disabled>
+                Coming soon...
               </Button>
             </div>
           </div>
