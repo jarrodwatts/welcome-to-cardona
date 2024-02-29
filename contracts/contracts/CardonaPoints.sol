@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@thirdweb-dev/contracts/base/ERC20Base.sol";
 import "./TeamManager.sol";
 
-contract CardonaPoints is ERC20Base {
+contract DenverPoints is ERC20Base {
 
     TeamManager public teamManager;
 

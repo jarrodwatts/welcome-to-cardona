@@ -77,7 +77,7 @@ export default function MintTokens({}: Props) {
 
         <Link
           className="text-[#adabb2] text-sm text-left font-semibold underline"
-          href="TODO:Youtube-tutorial"
+          href="https://youtu.be/BDc_WzLgfDM"
           target="_blank"
         >
           Follow the YouTube tutorial ↗

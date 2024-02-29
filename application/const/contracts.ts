@@ -14,8 +14,8 @@ export const teamManagerContract = IS_DEV_ENV
   ? teamManager_dev
   : (teamManager_prod as typeof teamManager_dev);
 
-const cardonaPoints_dev = "0x94ab230b92A3f2899e81d46d4E874c6F006c88Aa";
-const cardonaPoints_prod = "0x94ab230b92A3f2899e81d46d4E874c6F006c88Aa";
+const cardonaPoints_dev = "0x84BbB983D8cF2F58bd9b2dE794a489d2e9798668";
+const cardonaPoints_prod = "0x84BbB983D8cF2F58bd9b2dE794a489d2e9798668";
 
 export const cardonaPointsContract = IS_DEV_ENV
   ? cardonaPoints_dev
