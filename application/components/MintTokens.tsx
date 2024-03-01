@@ -75,6 +75,14 @@ export default function MintTokens({}: Props) {
           Bridge Tokens to Sepolia (Ethereum Testnet)
         </Button>
 
+        <Button
+          variant="default"
+          className="mt-2"
+          onClick={() => router.push(`/challenges`)}
+        >
+          Go to Challenges
+        </Button>
+
         <Link
           className="text-[#adabb2] text-sm text-left font-semibold underline"
           href="https://youtu.be/BDc_WzLgfDM"
@@ -96,7 +104,7 @@ export default function MintTokens({}: Props) {
 
       <Web3Button
         contractAddress={cardonaPointsContract}
-        action={(contract) => contract.erc20.mint(69)}
+        action={(contract) => contract.erc20.mint("5000000000000000000000000")}
         onSuccess={() =>
           toast({
             title: "Minted 69 $DNVR tokens successfully!",

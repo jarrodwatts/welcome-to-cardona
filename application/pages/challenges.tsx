@@ -39,6 +39,7 @@ const Home: NextPage = () => {
 
           <p className="text-2xl text-center mt-6">
             Hack smart contracts to win prizes. Good luck!
+            To win, submit a working Github example of the exploit.
           </p>
 
           <Separator className="my-6" />
@@ -47,41 +48,54 @@ const Home: NextPage = () => {
 
           <div className="flex flex-col md:flex-row flex-wrap mt-6 w-full sm:w-3/4 gap-2 items-center justify-center">
             <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
-              <h3 className="text-xl font-medium">Yield Optimizer Vault</h3>
+              <h3 className="text-xl font-medium">Effective Altruist</h3>
               <p className="text-[#adabb2] mt-2">
-                Recover funds from a yield optimization protocol.
+                A yield optimization protocol is launching a new vault that allows users to deposit crvUSD and earn rewards. You happen to follow the deployer address of that protocol, and so you're the first one who has access to that new vault. You have a balance of 10 crvUSD. Alice will deposit 10,000 crvUSD, after you've already had the chance to interact with the vault. She expects to get 10,000 shares. Pass the challange by rugging Alice's deposit, so that she gets less than 10,000 shares.
               </p>
-              <Button variant="default" className="mt-4" disabled>
-                Coming soon...
+             <a target="_blank" href="https://github.com/teeolendo/EthDenverCTFs/tree/main/src/effective-altruist" rel="noopener noreferrer">
+               <Button variant="default" className="mt-4">
+                View Challenge 1 Contract
               </Button>
+             </a>
             </div>
 
             <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
-              <h3 className="text-xl font-medium">ERC4626 Vault</h3>
+              <h3 className="text-xl font-medium">Honest Farmer</h3>
               <p className="text-[#adabb2] mt-2">
-                Claim funds from a compromised ERC4626 vault.
+                There’s a lending pool where users can borrow WETH Tokens. To do so, they first need to deposit twice the borrow amount in Balancer B-33WETH-33WBTC-33USDC LP tokens as collateral. The pool currently has 10 WETH in liquidity, supplied by honest farmers.
+                Pass the challenge by emptying the lending pool and earning more than 5 WETH.
               </p>
-              <Button variant="default" className="mt-4" disabled>
-                Coming soon...
+              <a target="_blank" href="https://github.com/teeolendo/EthDenverCTFs/tree/main/src/honest-farmer" rel="noopener noreferrer">
+               <Button variant="default" className="mt-4">
+                View Challenge 2 Contract
               </Button>
+             </a>
+            </div>
+
+             <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
+              <h3 className="text-xl font-medium">Honest Farmer v2</h3>
+              <p className="text-[#adabb2] mt-2">
+                The devs of the previous pool seem to have learned the lesson. And released a new version! Now they’re using a simpler collateral token - ETH. That should be enough.
+                Users can now borrow a stablecoin - crvUSD. To do so, they first need to deposit twice the borrow amount in ETH as collateral. Click the button below to find out more.
+              </p>
+              <a target="_blank" href="https://github.com/teeolendo/EthDenverCTFs/tree/main/src/honest-farmer-v2" rel="noopener noreferrer">
+               <Button variant="default" className="mt-4">
+                View Challenge 3 Contract
+              </Button>
+             </a>
             </div>
 
             <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
-              <h3 className="text-xl font-medium">Lending Pool #1</h3>
+              <h3 className="text-xl font-medium">Quick Earner</h3>
               <p className="text-[#adabb2] mt-2">
-                Empty a compromised lending pool.
+                There’s an ERC4626 vault where users can deposit WETH and earn auto-compounded yield. Some users already deposited in The Vault, and it currently has 50 ETH of unclaimed rewards.
+                Anyone can claim the pending ETH rewards, for a bounty of 5%. You don't have any ETH. Pass the challenge by claiming >90% of the rewards.
               </p>
-              <Button variant="default" className="mt-4" disabled>
-                Coming soon...
+              <a target="_blank" href="https://github.com/teeolendo/EthDenverCTFs/tree/main/src/quick-earner" rel="noopener noreferrer">
+               <Button variant="default" className="mt-4">
+                View Challenge 4 Contract
               </Button>
-            </div>
-
-            <div className="flex flex-col w-full sm:w-[48%] backdrop-blur-[8px] bg-white/5 border border-white/10 rounded-xl p-6 relative transition-colors duration-300 ease-in-out">
-              <h3 className="text-xl font-medium">Lending Pool #2</h3>
-              <p className="text-[#adabb2] mt-2">Avoid getting liquidated.</p>
-              <Button variant="default" className="mt-4" disabled>
-                Coming soon...
-              </Button>
+             </a>
             </div>
           </div>
 
